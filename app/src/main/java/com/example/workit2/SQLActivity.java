@@ -8,4 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 
 public class SQLActivity extends AppCompatActivity {
 
+    protected void getData(String s1){
+
+    }
+
+    protected void putData(String s1, String s2){
+
+    }
+
+    protected void setErrorMessage(){
+
+    }
 }

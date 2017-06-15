@@ -100,8 +100,8 @@ public class WeightActivity extends SQLActivity {
 
     public void submit(View v){
         int weight = picker.getValue();
-        //putData("weight","'value':"+weight+",'unit':'"+(LBorKG?"lb":"kg")+"'");
-        //getData("weight");
+        putData("weight","'value':"+weight+",'unit':'"+(LBorKG?"lb":"kg")+"'");
+        getData("weight");
     }
 
     public void getData(View v){
