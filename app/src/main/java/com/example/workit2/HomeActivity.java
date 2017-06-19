@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.BarGraphSeries;
@@ -75,5 +76,11 @@ public class HomeActivity extends SQLActivity {
     public void toHeartrate(View v){
         Intent intent = new Intent(this,HeartrateActivity.class);
         startActivity(intent);
+    }
+
+    public void dropTables(View v){
+        Toast toast = Toast.makeText(this, "Tables dropped", Toast.LENGTH_SHORT);
+        toast.show();
+        mDbHelper.dropTables(mDbHelper.getReadableDatabase());
     }
 }

@@ -47,10 +47,17 @@
             android:onClick="toSteps"/>
     </RelativeLayout>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DROP TABLES"
+        android:onClick="dropTables"
+        android:id="@+id/home_DROPTABLES"
+        android:layout_below="@id/home_BUTTONS"/>
 
     <com.jjoe64.graphview.GraphView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/home_GRAPH"
-        android:layout_below="@id/home_BUTTONS"/>
+        android:layout_below="@id/home_DROPTABLES"/>
 </RelativeLayout>

@@ -11,7 +11,17 @@ public class SQLContract {
 
     public static class SQLEntry implements BaseColumns {
         public static final String TABLE_NAME = "userdata";
-        public static final String COLUMN_NAME_TITLE = "title";
-        public static final String COLUMN_NAME_SUBTITLE = "subtitle";
+        public static final String COLUMN_1 = "type";
+        public static final String COLUMN_2 = "value";
+        public static final String COLUMN_3 = "unit";
+        public static final String COLUMN_4 = "name";
+        public static final String COLUMN_5 = "count";
+        public static final String COLUMN_6 = "difficulty";
+        public static final String COLUMN_7 = "favorite";
+        public static final String COLUMN_8 = "steps";
+        public static final String COLUMN_9 = "heartrate";
+        public static final String COLUMN_10 = "datetime";
+
+
     }
 }

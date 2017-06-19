@@ -72,7 +72,7 @@ public class WeightActivity extends SQLActivity {
         g.setNumVerticalLabels(7);
         graph.getGridLabelRenderer().setHumanRounding(false);
 
-        //getData("weight");
+        getData("weight");
 
         Switch toggle = (Switch) findViewById(R.id.weight_LBKG);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -100,12 +100,13 @@ public class WeightActivity extends SQLActivity {
 
     public void submit(View v){
         int weight = picker.getValue();
-        putData("weight","'value':"+weight+",'unit':'"+(LBorKG?"lb":"kg")+"'");
+        String[] params = {weight+"",(LBorKG?"lb":"kg")};
+        putData("weight",params);
         getData("weight");
     }
 
     public void getData(View v){
-        //getData("weight");
+        getData("weight");
     }
 
     //@Override
@@ -165,7 +166,7 @@ public class WeightActivity extends SQLActivity {
             }
         }
         else if(op.equals("store")){
-            //setErrorMessage(data);
+            setErrorMessage(data);
         }
     }
 }

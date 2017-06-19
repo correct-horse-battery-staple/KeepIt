@@ -52,7 +52,7 @@ public class ActivityActivity extends SQLActivity{
         v.setMinY(0);
         v.setMaxY(160);
 
-        //getData("activities");
+        getData("activities");
     }
 
     public void edit(View v){
@@ -80,8 +80,9 @@ public class ActivityActivity extends SQLActivity{
 
     public void onClick(View v, ActivityItem item){
         if(!editMode) {
-            //putData("activities", "'name':'"+item.getName()+"','difficulty':'" +item.getDiff()+ "'");
-            //getData("activities");
+            String[] params = {item.getName(),""+item.getDiff()};
+            putData("activities", params);
+            getData("activities");
         }
     }
 
@@ -161,7 +162,7 @@ public class ActivityActivity extends SQLActivity{
             }
         }
         else if(op.equals("store")){
-            //setErrorMessage(data);
+            setErrorMessage(data);
         }
     }
 }
