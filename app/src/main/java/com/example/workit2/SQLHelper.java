@@ -15,9 +15,17 @@ public class SQLHelper extends SQLiteOpenHelper {
 
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + SQLContract.SQLEntry.TABLE_NAME + " (" +
-                    SQLContract.SQLEntry._ID + " INTEGER PRIMARY KEY," +
-                    SQLContract.SQLEntry.COLUMN_1 + " TEXT," +
-                    SQLContract.SQLEntry.COLUMN_2 + " TEXT)";
+                    SQLContract.SQLEntry._ID + " INTEGER PRIMARY KEY, " +
+                    SQLContract.SQLEntry.COLUMN_1 + " TEXT, " +              //type
+                    SQLContract.SQLEntry.COLUMN_2 + " INTEGER, " +           //value
+                    SQLContract.SQLEntry.COLUMN_3 + " TEXT, " +              //unit
+                    SQLContract.SQLEntry.COLUMN_4 + " TEXT, " +              //name
+                    SQLContract.SQLEntry.COLUMN_5 + " INTEGER, " +           //count
+                    SQLContract.SQLEntry.COLUMN_6 + " DOUBLE PRECISION, " +  //difficulty
+                    SQLContract.SQLEntry.COLUMN_7 + " BOOLEAN, " +           //favorite
+                    SQLContract.SQLEntry.COLUMN_8 + " INTEGER, " +           //steps
+                    SQLContract.SQLEntry.COLUMN_9 + " INTEGER, " +           //heartrate
+                    SQLContract.SQLEntry.COLUMN_10 + " TEXT" +")";         //datetime
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + SQLContract.SQLEntry.TABLE_NAME;

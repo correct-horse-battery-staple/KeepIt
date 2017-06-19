@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import java.util.Date;
+
 /**
  * Created by panda_000 on 6/14/2017.
  */
@@ -25,8 +27,8 @@ public class SQLActivity extends AppCompatActivity {
 //        };
 
         // Filter results WHERE "title" = 'My Title'
-        String selection = null;
-        String[] selectionArgs = null;
+        String selection = null; //SQLContract.SQLEntry.COLUMN_1 + " = ?";
+        String[] selectionArgs = null; //{ "weight" };
 
         // How you want the results sorted in the resulting Cursor
         String sortOrder = null;
@@ -41,9 +43,13 @@ public class SQLActivity extends AppCompatActivity {
                 null,                                     // don't filter by row groups
                 sortOrder                                 // The sort order
         );
+        String[] cols = cursor.getColumnNames();
         while(cursor.moveToNext()) {
-            String string = cursor.getString(
-                    cursor.getColumnIndexOrThrow(SQLContract.SQLEntry.COLUMN_2));
+            String string = "";
+            for(String col:cols) {
+                string += cursor.getString(
+                        cursor.getColumnIndexOrThrow(col))+" ";
+            }
             Log.d("get",string);
         }
         cursor.close();
@@ -67,11 +73,35 @@ public class SQLActivity extends AppCompatActivity {
         COLUMN_8 = "steps";
         COLUMN_9 = "heartrate";
         COLUMN_10 = "datetime";
+
+        activities
+        weight
+        steps
+        heartbeat
         */
 
         ContentValues values = new ContentValues();
         values.put(SQLContract.SQLEntry.COLUMN_1, s1);
-        values.put(SQLContract.SQLEntry.COLUMN_2, s2);
+        switch(s1){
+            case "activities":
+                values.put(SQLContract.SQLEntry.COLUMN_4, s2[0]);
+                values.put(SQLContract.SQLEntry.COLUMN_5, Integer.parseInt(s2[1]));
+                values.put(SQLContract.SQLEntry.COLUMN_6, Double.parseDouble(s2[2]));
+                values.put(SQLContract.SQLEntry.COLUMN_7, Boolean.parseBoolean(s2[3]));
+                break;
+            case "weight":
+                values.put(SQLContract.SQLEntry.COLUMN_2, Integer.parseInt(s2[0]));
+                values.put(SQLContract.SQLEntry.COLUMN_3, s2[1]);
+                break;
+            case "steps":
+                values.put(SQLContract.SQLEntry.COLUMN_8, Integer.parseInt(s2[0]));;
+                break;
+            case "heartbeat":
+                values.put(SQLContract.SQLEntry.COLUMN_9, Integer.parseInt(s2[0]));
+                break;
+        }
+        values.put(SQLContract.SQLEntry.COLUMN_10,new Date().toString());
+        Log.d("put date",new Date().toString());
 
         // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(SQLContract.SQLEntry.TABLE_NAME, null, values);

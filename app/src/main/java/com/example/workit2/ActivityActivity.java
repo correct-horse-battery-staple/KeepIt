@@ -80,7 +80,7 @@ public class ActivityActivity extends SQLActivity{
 
     public void onClick(View v, ActivityItem item){
         if(!editMode) {
-            String[] params = {item.getName(),""+item.getDiff()};
+            String[] params = {item.getName(),""+item.getSize(),""+item.getDiff(),""+item.isFavorite()};
             putData("activities", params);
             getData("activities");
         }
