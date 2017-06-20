@@ -31,8 +31,7 @@ public class SQLActivity extends AppCompatActivity {
         String[] selectionArgs = null; //{ "weight" };
 
         // How you want the results sorted in the resulting Cursor
-        String sortOrder = null;
-//                SQLContract.SQLEntry.COLUMN_2 + " DESC";
+        String sortOrder = SQLContract.SQLEntry.COLUMN_1 + " DESC";
 
         Cursor cursor = db.query(
                 SQLContract.SQLEntry.TABLE_NAME,          // The table to query
@@ -56,7 +55,7 @@ public class SQLActivity extends AppCompatActivity {
     }
 
     protected void putData(String s1, String[] s2){
-        Log.d("putData",s1+" "+s2.toString());
+        Log.d("putData",s1);
 
         // Gets the data repository in write mode
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
@@ -96,7 +95,8 @@ public class SQLActivity extends AppCompatActivity {
             case "steps":
                 values.put(SQLContract.SQLEntry.COLUMN_8, Integer.parseInt(s2[0]));;
                 break;
-            case "heartbeat":
+            case "heartrate":
+                Log.d("heartrate parse",s2[0]);
                 values.put(SQLContract.SQLEntry.COLUMN_9, Integer.parseInt(s2[0]));
                 break;
         }

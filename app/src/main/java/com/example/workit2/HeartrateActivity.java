@@ -17,6 +17,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -25,12 +26,12 @@ public class HeartrateActivity extends SQLActivity {
     private static final String TAG = "HeartRateMonitor";
     private static final AtomicBoolean processing = new AtomicBoolean(false);
 
-    private static SurfaceView preview = null;
+    private SurfaceView preview = null;
     private static SurfaceHolder previewHolder = null;
     private static Camera camera = null;
-    private static View image = null;
-    private static TextView text = null;
-    private static String beatsPerMinuteValue="";
+    private View image = null;
+    private TextView text = null;
+    private String beatsPerMinuteValue="";
     private static PowerManager.WakeLock wakeLock = null;
 
     private static TextView mTxtVwStopWatch;
@@ -122,7 +123,7 @@ public class HeartrateActivity extends SQLActivity {
         camera = null;
     }
 
-    private static Camera.PreviewCallback previewCallback = new Camera.PreviewCallback() {
+    private Camera.PreviewCallback previewCallback = new Camera.PreviewCallback() {
 
         /**
          * {@inheritDoc}
@@ -224,7 +225,7 @@ public class HeartrateActivity extends SQLActivity {
         v.vibrate(500);
     }
 
-    private static SurfaceHolder.Callback surfaceCallback = new SurfaceHolder.Callback() {
+    private SurfaceHolder.Callback surfaceCallback = new SurfaceHolder.Callback() {
 
         /**
          * {@inheritDoc}
@@ -285,7 +286,7 @@ public class HeartrateActivity extends SQLActivity {
 
 
 
-    private static void prepareCountDownTimer(){
+    private void prepareCountDownTimer(){
         mTxtVwStopWatch.setText("---");
         new CountDownTimer(10000, 1000) {
 
@@ -294,13 +295,17 @@ public class HeartrateActivity extends SQLActivity {
             }
 
             public void onFinish() {
-                //.mTxtVwStopWatch.setText("done!");
+                ///mTxtVwStopWatch.setText("done!");
+                mTxtVwStopWatch.setText(beatsPerMinuteValue);
+                Toast.makeText(getApplicationContext(),beatsPerMinuteValue,Toast.LENGTH_SHORT).show();
+                String[] params = {beatsPerMinuteValue};
+                putData("heartrate",params);
             }
         }.start();
     }
 
 
-    private static void showReadingCompleteDialog(){
+    private void showReadingCompleteDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(parentReference);
         builder.setTitle("PubNub-HeartRate");
         builder.setMessage("Reading taken Succesfully at- "+beatsPerMinuteValue+" beats per minute.")

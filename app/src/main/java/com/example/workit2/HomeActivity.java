@@ -82,5 +82,6 @@ public class HomeActivity extends SQLActivity {
         Toast toast = Toast.makeText(this, "Tables dropped", Toast.LENGTH_SHORT);
         toast.show();
         mDbHelper.dropTables(mDbHelper.getReadableDatabase());
+        getData("dropped");
     }
 }
